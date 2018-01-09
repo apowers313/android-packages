@@ -24,11 +24,11 @@ export ANDROID_SYSROOT=$(ANDROID_TOOLCHAIN)/sysroot
 export SYSROOT=$(ANDROID_SYSROOT)
 export PATH:=$(PATH):$(ANDROID_TOOLCHAIN_BIN)
 
-export CFLAGS=-fPIE -pie -D__ANDROID_API__=$(ANDROID_API)
-export CXXFLAGS=-fPIE -pie -D__ANDROID_API__=$(ANDROID_API)
-export LDFLAGS=-fPIE -pie
+export CFLAGS=-fPIE -D__ANDROID_API__=$(ANDROID_API)
+export CXXFLAGS=-fPIE -D__ANDROID_API__=$(ANDROID_API) -std=c++11 -I$(ANDROID_TOOLCHAIN)/include/c++/4.9.x
+export LDFLAGS=-fPIE -L$(SYSROOT)/usr/lib
 
-all: zlib openssl nghttp2 curl sqlite
+all: zlib openssl nghttp2 curl sqlite alexa
 .PHONY: all
 
 zlib:
@@ -51,12 +51,17 @@ sqlite:
 	make -C sqlite
 .PHONY: sqlite
 
+alexa:
+	make -C alexa
+.PHONY: alexa
+
 clean:
-	make -C zlib clean
-	make -C openssl clean
-	make -C nghttp2 clean
-	make -C curl clean
-	make -C sqlite clean
+	-make -C zlib clean
+	-make -C openssl clean
+	-make -C nghttp2 clean
+	-make -C curl clean
+	-make -C sqlite clean
+	-make -C alexa clean
 .PHONY: clean
 
 # cd openssl && ./build.sh

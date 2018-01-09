@@ -5,7 +5,6 @@ SOURCE_DIR=nghttp2-1.29.0
 all: $(SOURCE_DIR)
 	cd $< && \
 		configure \
-		    --disable-shared \
 		    --host=arm-linux-androideabi \
 		    --build=`dpkg-architecture -qDEB_BUILD_GNU_TYPE` \
 		    --without-libxml2 \

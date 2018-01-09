@@ -20,7 +20,7 @@ tl;dr
 If you haven't already, download the NDK [here](https://developer.android.com/ndk/downloads/index.html) or [using the Android Studio SDK Manager](https://developer.android.com/ndk/guides/index.html). Start by setting up a [standalone toolchain](https://developer.android.com/ndk/guides/standalone_toolchain.html):
 
 ``` sh
-$(NDKROOT)/build/tools/make-standalone-toolchain.sh --arch=arm --platform=android-21 --install-dir=/opt/local/android
+$(NDKROOT)/build/tools/make-standalone-toolchain.sh --arch=arm --platform=android-21 --stl=libc++ --install-dir=/opt/local/android
 ```
 
 Note that there are few options embedded above: the architecture you want to use, which Android API to support, and where to install the resulting files. See the [standalone toolchain instructions](https://developer.android.com/ndk/guides/standalone_toolchain.html) for more details on all that.
